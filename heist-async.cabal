@@ -31,13 +31,14 @@ Cabal-version:       >=1.2
 
 Library
   -- Modules exported by the library.
-  Exposed-modules: Heist.Splices.Async
+  Exposed-modules: Heist.Splices.Async, Heist.Splices.Async.TH
     
   Build-depends:
     base >= 4,
     xmlhtml >= 0.1 && <= 0.2,
     heist >= 0.5 && <= 0.6,
-    text >= 0.11 && <= 0.12
+    text >= 0.11 && <= 0.12,
+    template-haskell
   
   -- Modules not exported by this package.
   -- Other-modules:       
