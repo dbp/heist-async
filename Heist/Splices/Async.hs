@@ -14,6 +14,7 @@ $(loadJS)
 heistAsyncSplices = [ ("a-async", aAsync)
                     , ("form-async", formAsync)
                     , ("div-async", divAsync)
+                    , ("div-async-append", divAppendAsync)
                     , ("activate-async", activateAsync)
                     ]
 
@@ -33,6 +34,13 @@ divAsync = do
   node <- getParamNode
   let name = fromMaybe "undefined" $ X.getAttribute "name" node
   return [X.setAttribute "data-splice-name" name $ X.Element "div" (filter ((/= "name").fst) $ X.elementAttrs node) (X.elementChildren node)]
+
+divAppendAsync :: Monad m => Splice m
+divAppendAsync = do
+  node <- getParamNode
+  let name = fromMaybe "undefined" $ X.getAttribute "name" node
+  return [X.setAttribute "data-append-name" name $ X.Element "div" (filter ((/= "name").fst) $ X.elementAttrs node) (X.elementChildren node)]
+
 
 activateAsync :: Monad m => Splice m
 activateAsync = do

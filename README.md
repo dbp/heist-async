@@ -10,11 +10,13 @@
   
 **\<div-async name="something"\>** - this will result in a normal div tag that has an extra attribute identifying it as a div that can be replaced asynchronously (it is, data-splice-name). When you generate the original page, you put in \<div-async\>'s in all the places where you may want to replace content (and they do not have to be empty; in the case of pagination, they could contain the first page's worth of data), and then in the responses to the \<a-async\> or \<form-async\> request to the server, return \<div-async\>'s as the top level elements and the existing ones (if they exist) will be replaced by the now ones.
 
+**\<div-async-append name="something"\>** - this will append the contents inside an existing \<div-async-append\>. 
+
 ## The idea behind this:
 The immediate inspiration for this is Facebook's Primer (and some of the code is derived from what they have made available), and more specifically the idea of controlling what content to replace client side on the server. So, when a client makes a request (via \<a-async\> or \<form-async\>) the server decides what \<div-async\>'s to pass back and therefore what content to replace client on the client. Depending on factors that the client could know nothing about, these div's could be different. The server could also choose to hide a specific div by passing back a \<div-async style="display:none"/\>. Additionally, this means that the rendering code can be identical, because if you have the code to render a given part of a page in a separate template, if it is a non-async request then you can render the whole page, and if it is an async request you can render just that part, without having to change how you are rendering, and without having to duplicate anything.
 
 ## Other thoughts:
-This is really early software, and I have intentionally tried to keep it really minimal, to see how far it can go with just these three tags. There are a lot of other possibilities (\<div-async-append\>, for example), but I'm not sure if they are actually necessary, and I wanted to stay on the minimal end to begin with.
+This is really early software, and I have intentionally tried to keep it really minimal, to see how far it can go with just these three tags. There are a lot of other possibilities, but I'm not sure if they are actually necessary, and I wanted to stay on the minimal end to begin with.
 
 ## Usage example 
 
