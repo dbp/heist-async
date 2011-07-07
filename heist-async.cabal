@@ -1,5 +1,5 @@
 Name:                heist-async
-Version:             0.2.0.0
+Version:             0.3.0.0
 Synopsis:            Adding support for asynchronous updates ("AJAX") with heist, in an unobtrusive way
 -- Description:         
 Homepage:            http://darcsden.com/dbp/heist-async
