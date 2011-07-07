@@ -35,10 +35,10 @@
 
   function setHeaders(http, options) {
     var headers = options.headers || {};
-    headers.Accept = 'text/javascript, text/html, application/xml, text/xml, */*';
+    headers.Accept = headers.Accept || 'text/javascript, text/html, application/xml, text/xml, */*';
     headers['X-Requested-With'] = headers['X-Requested-With'] || 'XMLHttpRequest';
     if (options.data) {
-      headers['Content-type'] = 'application/x-www-form-urlencoded';
+      headers['Content-type'] = headers['Content-type'] || 'application/x-www-form-urlencoded';
       for (var h in headers) {
         headers.hasOwnProperty(h) && http.setRequestHeader(h, headers[h], false);
       }
@@ -77,7 +77,7 @@
       script.type = "text/javascript";
       script.src = o.url;
       script.async = true;
-      
+
       var onload = function () {
         // Call the user callback with the last value stored
         // and clean up values and scripts.
@@ -85,13 +85,13 @@
         lastValue = undefined;
         head.removeChild(script);
       };
-      
+
       script.onload = onload;
       // onload for IE
       script.onreadystatechange = function () {
-        script.readyState == "loaded" && onload();
+        /^loaded|complete$/.test(script.readyState) && onload();
       };
-      
+
       // Add the script to the DOM head
       head.appendChild(script);
     } else {
@@ -149,11 +149,11 @@
 
     function success(resp) {
       o.timeout && clearTimeout(self.timeout) && (self.timeout = null);
-      var r = resp.responseText;
+      var r = resp.responseText, JSON;
 
       switch (type) {
       case 'json':
-        resp = eval('(' + r + ')');
+        resp = JSON ? JSON.parse(r) : eval('(' + r + ')');
         break;
       case 'js':
         resp = eval(r);

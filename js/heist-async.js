@@ -29,6 +29,10 @@
             }
           }
         }
+      } else if (elements[i].nodeName == "DIV" && elements[i].hasAttribute("data-redirect-url")) {
+        // this is a redirect, so do it!
+        document.location.href = elements[i].getAttribute("data-append-name");
+        return;
       }
     };
     // now run any included javascript

@@ -15,6 +15,7 @@ heistAsyncSplices = [ ("a-async", aAsync)
                     , ("form-async", formAsync)
                     , ("div-async", divAsync)
                     , ("div-async-append", divAppendAsync)
+                    , ("redirect-async", redirectAsync)
                     , ("activate-async", activateAsync)
                     ]
 
@@ -40,6 +41,13 @@ divAppendAsync = do
   node <- getParamNode
   let name = fromMaybe "undefined" $ X.getAttribute "name" node
   return [X.setAttribute "data-append-name" name $ X.Element "div" (filter ((/= "name").fst) $ X.elementAttrs node) (X.elementChildren node)]
+  
+redirectAsync :: Monad m => Splice m
+redirectAsync = do
+  node <- getParamNode
+  case X.getAttribute "url" node of
+    Nothing -> return []
+    Just url -> return [X.Element "div" [("data-redirect-url", url)] []]
 
 
 activateAsync :: Monad m => Splice m

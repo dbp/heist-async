@@ -12,6 +12,9 @@
 
 **\<div-async-append name="something"\>** - this will append the contents inside an existing \<div-async-append\>. 
 
+**\<redirect-async url="/path/to/redirect"\>** - this will cause a full page redirect on the client. This is important because by default the ajax request will follow all redirects so you will end up with the resulting full page without a clear way of figuring out what happened (except introspecting and looking for suspicious elements). 
+
+
 ## The idea behind this:
 The immediate inspiration for this is Facebook's Primer (and some of the code is derived from what they have made available), and more specifically the idea of controlling what content to replace client side on the server. So, when a client makes a request (via \<a-async\> or \<form-async\>) the server decides what \<div-async\>'s to pass back and therefore what content to replace client on the client. Depending on factors that the client could know nothing about, these div's could be different. The server could also choose to hide a specific div by passing back a \<div-async style="display:none"/\>. Additionally, this means that the rendering code can be identical, because if you have the code to render a given part of a page in a separate template, if it is a non-async request then you can render the whole page, and if it is an async request you can render just that part, without having to change how you are rendering, and without having to duplicate anything.
 
