@@ -1,6 +1,6 @@
 # heist-async: Adding asynchronous updates of pages using heist.
 
-## This provides four splices, exported in heistAsyncSplices
+## This provides six splices, exported in heistAsyncSplices
 
 **\<activate-async/\>** - This brings in the required javascript - mainly, the three small javascript libraries (in total weighing 12k) and the cade to make the splice replacement work (in \<1k). Minified (with uglifyjs) and regular versions are available in the js folder, and for production, serving those files would be preferable to including inline (as that way they could be cached), and implementations of heist-async.js using bigger frameworks (jQuery, prototype, etc) would be appreciated. Ideally they would be made available both as standalone files (ie, heist-async-jquery.js) and as splices (\<activate-async-jquery/\>). This splice will only run once (the first place it is called), so feel free to include it in various places throughout your templates, if that suits you needs better.
 
