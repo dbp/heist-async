@@ -8,6 +8,7 @@ import qualified  Data.Text.IO as TIO
 import            Language.Haskell.TH
 import            Language.Haskell.TH.Syntax
 
+-- | loadJS: this template haskell function put's the contents of the javascript files into fileContents, so that it can be included with activateAsync
 loadJS = do let fname = mkName "fileContents"
             typeSig <- SigD fname `fmap` [t| String |]
             v <- valD (varP fname) (normalB $ loadJSFiles) []
