@@ -16,12 +16,12 @@
     var elements = div.childNodes;
     for (i=0; i<elements.length; i++) {
       if (elements[i].nodeName == "DIV" && elements[i].hasAttribute("data-splice-name")) {
-        var rep = qwery("div[data-splice-name=" + elements[i].getAttribute("data-splice-name") + "]");
+        var rep = qwery("div[data-splice-name='" + elements[i].getAttribute("data-splice-name") + "']");
         if (rep && rep[0]) {
           rep[0].parentNode.replaceChild(elements[i],rep[0]);
         }
       } else if (elements[i].nodeName == "DIV" && elements[i].hasAttribute("data-append-name")) {
-        var rep = qwery("div[data-append-name=" + elements[i].getAttribute("data-append-name") + "]");
+        var rep = qwery("div[data-append-name='" + elements[i].getAttribute("data-append-name") + "']");
         if (rep && rep[0] && elements[i].childNodes) {
           for(n=0; n < elements[i].childNodes.length; n++) {
             if (elements[i].childNodes[n].nodeType == 1) {
