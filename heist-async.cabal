@@ -1,5 +1,5 @@
 Name:                heist-async
-Version:             0.4.0.1
+Version:             0.5.0.0
 Synopsis:            Adding support for asynchronous updates ("AJAX") with heist
 Description:         This package provides six splices and some accompanying javascript to allow declarative ajax programming that involves no javascript programming.
 Homepage:            http://github.com/dbp/heist-async
@@ -35,9 +35,9 @@ Library
     
   Build-depends:
     base >= 4 && <= 5,
-    xmlhtml >= 0.1 && <= 0.2,
-    heist >= 0.5 && < 0.7,
-    text >= 0.11 && <= 0.12,
+    xmlhtml >= 0.1,
+    heist >= 0.5,
+    text >= 0.11,
     template-haskell
   
   -- Modules not exported by this package.
