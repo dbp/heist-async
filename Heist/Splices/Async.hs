@@ -17,11 +17,13 @@ module Heist.Splices.Async
   )
 where
   
-import            Text.Templating.Heist
 import qualified  Data.Text as T
 import            Data.Text (Text)
 import qualified  Text.XmlHtml as X
 import            Data.Maybe (fromMaybe)
+import Heist
+import Heist.Interpreted
+import Heist.SpliceAPI
 
 import Heist.Splices.Async.TH (loadJS)
 
@@ -44,14 +46,16 @@ $(loadJS)
 --   
 -- > <activate-async/> 
 --   
-heistAsyncSplices :: Monad m => [(Text, Splice m)]
-heistAsyncSplices = [ ("a-async", aAsync)
-                    , ("form-async", formAsync)
-                    , ("div-async", divAsync)
-                    , ("div-async-append", divAppendAsync)
-                    , ("redirect-async", redirectAsync)
-                    , ("activate-async", activateAsync)
-                    ]
+
+heistAsyncSplices :: Monad m => Splices (Splice m)
+heistAsyncSplices = do
+  "a-async"          #! aAsync
+  "form-async"       #! formAsync
+  "div-async"        #! divAsync
+  "div-async-append" #! divAppendAsync
+  "redirect-async"   #! redirectAsync
+  "activate-async"   #! activateAsync
+
 -- | a link that loads it's results asynchronously and replaces parts of the page based on the contents. A normal anchor tag in all ways.
 aAsync :: Monad m => Splice m
 aAsync = do
@@ -92,6 +96,6 @@ redirectAsync = do
 activateAsync :: Monad m => Splice m
 activateAsync = do
   -- make sure that only the first call to this does anything.
-  modifyTS $ bindSplice "activate-async" (return [])
+  modifyHS $ bindSplice "activate-async" (return [])
   return [X.Element "script" [("type","text/javascript")] [X.TextNode js]]
     where js = T.pack fileContents
