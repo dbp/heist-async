@@ -1,5 +1,5 @@
 Name:                heist-async
-Version:             0.5.0.0
+Version:             0.6.0.0
 Synopsis:            Adding support for asynchronous updates ("AJAX") with heist
 Description:         This package provides six splices and some accompanying javascript to allow declarative ajax programming that involves no javascript programming.
 Homepage:            http://github.com/dbp/heist-async
@@ -7,7 +7,7 @@ License:             BSD3
 License-file:        LICENSE
 Author:              Daniel Patterson
 Maintainer:          dbp@riseup.net
--- Copyright:           
+-- Copyright:
 
 Category:            Web
 
@@ -24,7 +24,7 @@ Extra-source-files: README.md,
                     js/reqwest.min.js,
                     js/qwery.js,
                     js/qwery.min.js
-                     
+
 -- Constraint on the version of Cabal needed to build this package.
 Cabal-version:       >=1.2
 
@@ -32,17 +32,16 @@ Cabal-version:       >=1.2
 Library
   -- Modules exported by the library.
   Exposed-modules: Heist.Splices.Async, Heist.Splices.Async.TH
-    
+
   Build-depends:
     base >= 4 && <= 5,
     xmlhtml >= 0.1,
     heist >= 0.13,
     text >= 0.11,
     template-haskell
-  
+
   -- Modules not exported by this package.
-  -- Other-modules:       
-  
+  -- Other-modules:
+
   -- Extra tools (e.g. alex, hsc2hs, ...) needed to build the source.
-  -- Build-tools:         
-  
+  -- Build-tools:
